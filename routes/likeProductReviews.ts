@@ -6,6 +6,7 @@
 import challengeUtils = require('../lib/challengeUtils')
 import { type Request, type Response, type NextFunction } from 'express'
 import { type Review } from '../data/types'
+import { ObjectID } from 'mongodb'
 
 const challenges = require('../data/datacache').challenges
 const db = require('../data/mongodb')
@@ -13,7 +14,7 @@ const security = require('../lib/insecurity')
 
 module.exports = function productReviews () {
   return (req: Request, res: Response, next: NextFunction) => {
-    const id = req.body.id
+    const id = new ObjectID(req.body.id)
     const user = security.authenticatedUsers.from(req)
     db.reviews.findOne({ _id: id }).then((review: Review) => {
       if (!review) {
