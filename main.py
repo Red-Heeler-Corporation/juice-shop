@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-"""
-Vulnerable Payment Processing Application
-Designed to test SAST scanners with sophisticated evasion techniques
-"""
 
 import os
 import json
